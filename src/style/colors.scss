@@ -1,4 +1,4 @@
-$accent: #00aeff;
+$accent: #00ffc8;
 $complement: complement($accent);
 
 html {
@@ -10,9 +10,9 @@ html {
 
 @media(prefers-color-scheme: dark){
   html {
-    --base-color: #000000;
+    --base-color: rgb(19, 19, 19);
     --border-dark: rgba(invert(var(--base-color)), 0.88);
-    --background: #232323;
+    --background: #000000;
     --text-main: white;
   }
 }
