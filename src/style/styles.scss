@@ -31,7 +31,7 @@ code {
 }
 
 hr {
-  border-top: 1px solid var(--foreground);
+  border-top: 1px solid var(--text-main);
 }
 
 mark {
@@ -50,5 +50,41 @@ mark {
     position: sticky;
     top: 0;
     z-index: 999;
+    background-color: rgba(dark($accent-palette), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
 }
 
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $accent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  border-radius: $border-radius;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  width: 0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(darkest($accent-palette), 0.6);
+  transition: all linear 0.6s;
+  opacity: 0.6;
+  width: 15px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(base($accent-palette), 0.6);
+  transition: all linear 0.6s;
+  opacity: 1;
+  width: 15px;
+}

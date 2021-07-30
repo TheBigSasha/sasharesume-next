@@ -8,7 +8,7 @@ module.exports = {
     title: `sasharesume`,
     description: `Alexander Aleshchenko's online resume for software and engineering projects.`,
     author: `Alexander Aleshchenko - GitHub/TheBigSasha`,
-    siteUrl: `sasharesume.com`,
+    siteUrl: `https://sasharesume.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

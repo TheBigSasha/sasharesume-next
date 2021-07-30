@@ -38,9 +38,9 @@ const Layout: React.FC = ({ children }) => {
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, 
           {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <a href="https://github.com/TheBigSasha">Alexander Aleshchenko</a>
         </footer>
       </div>
     </>

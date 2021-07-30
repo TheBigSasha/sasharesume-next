@@ -4,13 +4,20 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../utility/seo"
+import { motion, useViewportScroll } from "framer-motion"
 
-const IndexPage: React.FC = () => (
+
+const IndexPage: React.FC = () => {
+  const { scrollYProgress } = useViewportScroll();
+  const variants = {
+    hidden: { opacity: 0, scale: 0.1, },
+    visible: { opacity: 1, scale: 1 },
+  }
+  
+
+return(  
   <Layout>
     <Seo title="Home" />
-    <h1>Hello all</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
     <StaticImage
       src="../images/mascot.png"
       width={300}
@@ -19,6 +26,9 @@ const IndexPage: React.FC = () => (
       alt="A Gatsby astronaut"
       style={{ marginBottom: `1.45rem` }}
     />
+    <h1>Hello all</h1>
+    <p>Welcome to your new Gatsby site.</p>
+    <p>Now go build something great.</p>
     <p>
       This boilerplate differs from the default in a number of ways:
     </p>
@@ -34,6 +44,7 @@ const IndexPage: React.FC = () => (
       <Link className={'Magic'} to="/about-styling/">About Styling</Link>
     </p>
   </Layout>
-)
+);
+}
 
 export default IndexPage
