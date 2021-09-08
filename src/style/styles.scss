@@ -59,6 +59,43 @@ mark {
     justify-content: center;
 }
 
+.Card {
+  background: var(--background);
+  box-shadow: 4px 4px 3px rgba(0,0,0,0.3);
+  padding: 15px;
+}
+
+.EntryList {
+  display: flex;
+  flex-direction: column;
+  & > div {
+    margin: 15px;
+  }
+}
+
+.TagBubble {
+  background: darkest($accent-palette);
+  border-color: base($accent-palette);
+  border-style: solid;
+  border-width: 2px;
+  padding: 0 7px 0 7px;
+  width: min-content;
+  height: min-content;
+  border-radius: 400px;
+  margin-inline-end: 5px;
+  p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: small;
+  }
+}
+
+.Horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Works on Firefox */
 * {
   scrollbar-width: thin;

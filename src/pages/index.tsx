@@ -1,50 +1,63 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import Seo from "../utility/seo"
 import { motion, useViewportScroll } from "framer-motion"
+import Entry from "../components/Entry"
+import { TagProps } from "../components/Tag"
 
 
-const IndexPage: React.FC = () => {
-  const { scrollYProgress } = useViewportScroll();
-  const variants = {
-    hidden: { opacity: 0, scale: 0.1, },
-    visible: { opacity: 1, scale: 1 },
-  }
+const IndexPage: React.FC = ({data}) => {
+  const testTags: TagProps[] = [
+    {
+      name: 'React.JS',
+      category: 'Web Frontend',
+      iconID: "ReactJS",
+      tooltip: "TOOLTIP FOR REACT HERE!"
+    },
+    {
+      name: 'Gatsby',
+      category: 'Web Frontend',
+      iconID: "Gatsby",
+      tooltip: "TOOLTIP FOR Gatsby HERE!"
+    }
+  ]
+
   
-
 return(  
   <Layout>
     <Seo title="Home" />
-    <StaticImage
-      src="../images/mascot.png"
-      width={300}
-      quality={95}
-      formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <h1>Hello all</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <p>
-      This boilerplate differs from the default in a number of ways:
-    </p>
-    <ul>
-      <li>Fully TypeScript (as much as possible)</li>
-      <li>SCSS from the start</li>
-      <li>Dark theme via SCSS variables</li>
-      <li>Automatic color palettes</li>
-      <li>Google Analytics & GitHub Pages plugins builtin</li>
-    </ul>
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link className={'Magic'} to="/about-styling/">About Styling</Link>
-    </p>
+   <h1>Entries</h1>
+    <div className={'EntryList'}>
+      {data.allContentfulBlogEntry.edges.map(({node}) => {
+        console.log(node);
+        const { title, id, shortSummary, slug } = node;
+        return ( <Entry key={id} name={title} tags={testTags} contentRichText={shortSummary.raw} link={`/posts/${slug}`}/> );
+    })}
+    </div>
   </Layout>
 );
 }
+
+export const query = graphql`
+  query IndexQuery {
+    allContentfulBlogEntry {
+      edges {
+        node {
+          id
+          title
+          slug
+          shortSummary {
+            raw
+          }
+        }
+      }
+    }
+  }
+`
+
 
 export default IndexPage

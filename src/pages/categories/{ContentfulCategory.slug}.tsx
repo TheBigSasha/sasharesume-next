@@ -55,6 +55,7 @@ export const pageQuery = graphql`
   query($id: String!) {
     contentfulCategory(id: { eq: $id }) {
       title
+      slug
       icon {
         gatsbyImageData(layout: FIXED, width: 75)
       }

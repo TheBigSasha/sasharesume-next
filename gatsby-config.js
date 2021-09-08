@@ -11,6 +11,14 @@ module.exports = {
     siteUrl: `https://sasharesume.com/`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFULSPACEID,
+        accessToken: process.env.CONTENTFULACCESSTOKEN,
+        enableTags: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,

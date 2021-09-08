@@ -15,9 +15,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
   const background = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    ["linear-gradient(90deg, rgba(0, 255, 200,0.7) 0%,rgba(255, 0, 55,0.7) 0%)",
-    "linear-gradient(90deg, rgba(0, 255, 200,0.7) 0%, rgba(255, 0, 55,0.7) 100%)",
-    "linear-gradient(90deg, rgba(0, 255, 200,0.7) 100%, rgba(255, 0, 55,0.7) 100%)"]
+    ["linear-gradient(180deg, rgba(0, 255, 200,0.7) 0%,rgba(255, 0, 55,0.7) 0%)",
+    "linear-gradient(180deg, rgba(0, 255, 200,0.7) 0%, rgba(255, 0, 55,0.7) 100%)",
+    "linear-gradient(180deg, rgba(0, 255, 200,0.7) 100%, rgba(255, 0, 55,0.7) 100%)"]
   )
 
   return(
