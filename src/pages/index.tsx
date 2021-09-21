@@ -5,12 +5,14 @@ import { graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import Seo from "../utility/seo"
-import { motion, useViewportScroll } from "framer-motion"
+import { AnimatePresence, motion, useViewportScroll } from "framer-motion"
 import Entry from "../components/Entry"
 import { TagProps } from "../components/Tag"
+import { useState } from "react"
 
 
 const IndexPage: React.FC = ({data}) => {
+
   const testTags: TagProps[] = [
     {
       name: 'React.JS',
@@ -26,17 +28,35 @@ const IndexPage: React.FC = ({data}) => {
     }
   ]
 
-  
+  const [featuredIndex, setFeaturedIndex] = useState<number>(0);
+
+  const { title, id, shortSummary, slug } = data.allContentfulBlogEntry.edges[featuredIndex].node;
+
 return(  
   <Layout>
     <Seo title="Home" />
-   <h1>Entries</h1>
+    <div>
+    <AnimatePresence>
+      <motion.div
+      key={data.allContentfulBlogEntry.edges[featuredIndex]}
+      initial={{ opacity: 0, y: 200 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
+        <Entry key={id} name={title} tags={testTags} contentRichText={shortSummary.raw} link={`/posts/${slug}`}/>
+      </motion.div>
+  </AnimatePresence>
+
+    <button onClick={() => {featuredIndex < data.allContentfulBlogEntry.edges.length - 1 ? setFeaturedIndex(featuredIndex + 1) : setFeaturedIndex(0)}}>ADVANCE</button>
+   {/* <h1>Entries</h1>
     <div className={'EntryList'}>
+      <AnimatePresence>
       {data.allContentfulBlogEntry.edges.map(({node}) => {
         console.log(node);
         const { title, id, shortSummary, slug } = node;
         return ( <Entry key={id} name={title} tags={testTags} contentRichText={shortSummary.raw} link={`/posts/${slug}`}/> );
     })}
+    </AnimatePresence>
+    </div> */}
     </div>
   </Layout>
 );
