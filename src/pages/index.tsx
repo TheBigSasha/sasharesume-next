@@ -30,7 +30,8 @@ const IndexPage: React.FC = ({data}) => {
 
   const [featuredIndex, setFeaturedIndex] = useState<number>(0);
 
-  const { title, id, shortSummary, slug } = data.allContentfulBlogEntry.edges[featuredIndex].node;
+  const { title, id, shortSummary, slug, previewImages } = data.allContentfulBlogEntry.edges[featuredIndex].node;
+  console.log(previewImages);
 
 return(  
   <Layout>
@@ -42,7 +43,7 @@ return(
       initial={{ opacity: 0, y: 200 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}>
-        <Entry key={id} name={title} tags={testTags} contentRichText={shortSummary.raw} link={`/posts/${slug}`}/>
+        <Entry key={id} name={title} tags={testTags} contentRichText={shortSummary.raw} link={`/posts/${slug}`} previewImages={previewImages}/>
       </motion.div>
   </AnimatePresence>
 
@@ -63,20 +64,29 @@ return(
 }
 
 export const query = graphql`
-  query IndexQuery {
-    allContentfulBlogEntry {
-      edges {
-        node {
-          id
-          title
-          slug
-          shortSummary {
-            raw
-          }
+query IndexQuery {
+  allContentfulBlogEntry {
+    edges {
+      node {
+        id
+        title
+        slug
+        shortSummary {
+          raw
+        }
+        previewImages {
+                  ... on ContentfulAsset {
+        contentful_id
+        __typename
+        gatsbyImageData
+        }
         }
       }
     }
   }
+}
+
+
 `
 
 

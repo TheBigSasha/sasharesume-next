@@ -9,10 +9,12 @@ export interface EntryProps {
   contentRichText: string;
   link: string;
   tags: TagProps[];
+  previewImages: [];
 }
 
 const Entry: React.FC<EntryProps> =
-  ({ name, contentRichText, tags, children, link }) => {
+  ({ name, contentRichText, tags, children, link, previewImages }) => {
+    console.log(previewImages);
     return (
       <motion.div className={"Card"} initial={{scale: 0}} animate={{scale: 1}} exit={{scale: 0}}>
         <div className={'LeftRight'}>
@@ -21,8 +23,12 @@ const Entry: React.FC<EntryProps> =
         {documentToReactComponents(JSON.parse(contentRichText))}
         {children}
         </div>
-        <div >
-          {}
+        <div className={'Horizontal'}>
+          {previewImages?.map(({gatsbyImageData}) => 
+           {return(        <div style={{height: '100%', width: `250px`}}>
+            <GatsbyImage style={{width: '100%', height: '100%'}} image={gatsbyImageData} alt={name}/>
+            </div>)}
+          )}
         </div>
         </div>
       

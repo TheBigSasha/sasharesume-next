@@ -94,6 +94,10 @@ mark {
 .Horizontal {
   display: flex;
   flex-direction: row;
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
 }
 
 .LeftRight {
@@ -235,4 +239,11 @@ input {
 
 .bad {
   background-color: base($complement-palette);
+}
+
+.CardImage {
+  max-height: clamp(50px, 100%, 30vh);
+  max-width: 60%;
+  padding: 0;
+  margin: 15px;
 }
